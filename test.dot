@@ -1,0 +1,32 @@
+digraph 4 {
+	graph [ordering="out"];
+
+	4->{1, 5};
+
+	1->{1, 2};
+
+1 [style=filled, fillcolor=lightblue];
+	2->{2, 3};
+
+2 [style=filled, fillcolor=lightblue];
+	3->{3, 4};
+
+3 [style=filled, fillcolor=lightblue];
+4 [style=filled, fillcolor=lightblue];
+	5->{5, 10};
+
+5 [style=filled, fillcolor=lightblue];
+	10->{7, 11};
+
+	7->{6, 10};
+
+10 [style=filled, fillcolor=lightblue];
+	6->{6, 7};
+
+6 [style=filled, fillcolor=lightblue];
+7 [style=filled, fillcolor=lightblue];
+	11->{11, 0};
+
+11 [style=filled, fillcolor=lightblue];
+0 [style=filled, fillcolor=lightblue];
+}

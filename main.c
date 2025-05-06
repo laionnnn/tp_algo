@@ -1,10 +1,12 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include <stdio.h>
+#include <stdbool.h>
+
 
 typedef struct {
 	int id;
-	char data;		//unused
+	int data;		//unused
 } Noeud;
 
 typedef struct _Abr{
@@ -170,6 +172,124 @@ int exportDotGraph(Abr* T, char* name) {
 	return EXIT_SUCCESS;
 }
 
+//PARTIE TP4 LEON
+
+//gestion pile
+
+// Définition d'un élément de pile
+typedef struct NoeudP {
+    int valeur;
+    struct NoeudP* suivant;
+} NoeudP;
+
+// La pile elle-même (pointeur vers le sommet)
+typedef struct {
+    NoeudP* sommet;
+} Pile;
+
+// Initialisation
+void initPile(Pile* p) {
+    p->sommet = NULL;
+}
+
+// Vérifie si la pile est vide
+bool estVide(Pile* p) {
+    return p->sommet == NULL;
+}
+
+// Empile un élément
+void empiler(Pile* p, int val) {
+    NoeudP* nouveau = malloc(sizeof(NoeudP));
+    if (!nouveau) {
+        fprintf(stderr, "Erreur d'allocation mémoire\n");
+        exit(EXIT_FAILURE);
+    }
+    nouveau->valeur = val;
+    nouveau->suivant = p->sommet;
+    p->sommet = nouveau;
+}
+
+// Dépile un élément
+int depiler(Pile* p) {
+    if (estVide(p)) {
+        fprintf(stderr, "Erreur : pile vide\n");
+        //exit(EXIT_FAILURE);
+		return 0;
+    }
+    NoeudP* temp = p->sommet;
+    int val = temp->valeur;
+    p->sommet = temp->suivant;
+    free(temp);
+    return val;
+}
+
+// Regarde le sommet sans dépiler
+int sommet(Pile* p) {
+    if (estVide(p)) {
+        fprintf(stderr, "Erreur : pile vide\n");
+        //exit(EXIT_FAILURE);
+		return 0;
+    }
+    return p->sommet->valeur;
+}
+
+// Libère toute la pile
+void libererPile(Pile* p) {
+    while (!estVide(p)) {
+        depiler(p);
+    }
+}
+
+//question 1
+
+void fixerCle(Abr* abr, int a){
+
+
+	abr->x->id = a;
+	abr->x->data = a;
+
+
+}
+
+void ajouterFeuillesPartout(Abr* abr){
+	
+	if(abr->g != NULL){
+
+		ajouterFeuillesPartout(abr->g);
+	}
+	if(abr->d != NULL){
+		ajouterFeuillesPartout(abr->d);
+
+	}
+		
+	if(abr->g == NULL){
+		abr->g = creerAbr(creerNoeud(0,0));
+	}
+	if(abr->d == NULL){
+		abr->d = creerAbr(creerNoeud(0,0));
+	}
+
+}
+
+void versAbreBalise(Abr* abr, Pile* p){
+	
+
+	if(abr->x->id == 0){
+
+		fixerCle(abr, sommet(p));
+		printf("vleur : %d\n", sommet(p));
+		depiler(p);
+	}
+	else{
+		empiler(p, abr->x->id);
+		versAbreBalise(abr->g,p);
+		versAbreBalise(abr->d,p);
+	}
+	
+}
+
+//FIN PARTIE TP4 LEON
+
 
 int main()
 {
@@ -194,9 +314,29 @@ int main()
 	insererNoeud(n11, T);
 	insererNoeud(n6, T);
 
+	Pile* p = malloc(sizeof(Pile));
+	if (!p) {
+		fprintf(stderr, "Erreur malloc\n");
+		exit(EXIT_FAILURE);
+	}
+
+	initPile(p);
+	printf("okkkkkkkk\n");
+	ajouterFeuillesPartout(T);
+	
+
+	
+	versAbreBalise(T,p);
+	printf("okkkkkkkk2\n");
+	
+
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
 	exportDotGraph(T, "test.dot");
 	supprimerAbr(T);
 	return EXIT_SUCCESS;
+
+	//test leon
+
+
 }
