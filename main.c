@@ -119,13 +119,14 @@ int facteurDesequilibre(Abr* T)
 int ecritureRec(Abr* T, FILE* pF)
 {
 	if ((T->g == T->d) && (T->g == NULL)) {	
+		fprintf(pF, "[color=lightblue]");
 		return EXIT_SUCCESS;
 	}
 	else {
 		fprintf(pF, "\t%d", T->x->id);
 		if ((T->g) && (T->d)) {
 			fprintf(pF, "->{%d, %d};\n", T->g->x->id, T->d->x->id);
-			fputc('\n', pF);
+			//fputc('\n', pF);
 			ecritureRec(T->g, pF);
 			ecritureRec(T->d, pF);
 		}
@@ -134,16 +135,16 @@ int ecritureRec(Abr* T, FILE* pF)
 			fprintf(pF, "\ti%d [style=invis];\n", T->x->id);
 			fprintf(pF, "\t%d", T->x->id);
 			fprintf(pF, "->i%d [style=invis, weight=2];\n", T->x->id);
-			fputc('\n', pF);
 			ecritureRec(T->g, pF);
+			//fputc('\n', pF);
 		}
 		else if (T->d) {
 			fprintf(pF, "->i%d [style=invis, weight=2];\n", T->x->id);
 			fprintf(pF, "\ti%d [style=invis];\n", T->x->id);
 			fprintf(pF, "\t%d", T->x->id);
 			fprintf(pF, "->%d;\n", T->d->x->id);
-			fputc('\n', pF);
 			ecritureRec(T->d, pF);
+			//fputc('\n', pF);
 		}
 
 	}
