@@ -1,0 +1,8 @@
+# Ignore executable
+main
+
+# Ignore all PNG files
+*.png
+
+# Ignore all DOT files
+*.dot
