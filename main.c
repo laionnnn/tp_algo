@@ -329,6 +329,7 @@ void versAbreBalise(Abr* abr, Pile* p){
 
 int main()
 {
+	#ifdef DEBUG
 	/*
 	Arbre du sujet du TP, ne fonctionne pas bien
 	Noeud* n7 = creerNoeud(7, 0);
@@ -344,9 +345,9 @@ int main()
 	Noeud* n80 = creerNoeud(80, 0);
 	Noeud* n89 = creerNoeud(89, 0);
 	Noeud* n97 = creerNoeud(97, 0);	
-
+	
 	Abr* T = creerAbr(n47);
-
+	
 	insererNoeud(n25, T);
 	insererNoeud(n80, T);
 	
@@ -368,7 +369,7 @@ int main()
 	Noeud* n1 = creerNoeud(1, 0);
 	Noeud* n5 = creerNoeud(5, 0);
 	Noeud* n6 = creerNoeud(6, 0);
-
+	
 	Abr* T = creerAbr(n7);
 	insererNoeud(n3, T);
 	insererNoeud(n9, T);
@@ -380,25 +381,38 @@ int main()
 		fprintf(stderr, "Erreur malloc\n");
 		exit(EXIT_FAILURE);
 	}
-
+	
 	initPile(p);
 	printf("okkkkkkkk\n");
 	ajouterFeuillesPartout(T);
 	
-
+	
 	
 	versAbreBalise(T,p);
 	printf("okkkkkkkk2\n");
 	
-
+	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
 	exportDotGraph(T, "test.dot");
 	system( "dot -Tpng test.dot -o outfile.png" );
 	//supprimerAbr(T);
+	#else
+	short select;
+	while (select < 1 || select > 9) {
+		printf("\n\n █████  ██████  ██████  ███████       ██████   █████  ██      ██ ███████ ███████ \n██   ██ ██   ██ ██   ██ ██            ██   ██ ██   ██ ██      ██ ██      ██      \n███████ ██████  ██████  █████   █████ ██████  ███████ ██      ██ ███████ █████   \n██   ██ ██   ██ ██   ██ ██            ██   ██ ██   ██ ██      ██      ██ ██      \n██   ██ ██████  ██   ██ ███████       ██████  ██   ██ ███████ ██ ███████ ███████ \n\nAuthors: T. Ouerfili, L. Frénéa\nCopyright 2025 T. Ouerfili, L. Frénéa\n\n");
+		printf("Bienvenue dans le programme du TP4 - Arbres binaires de recherche équilibrés et balisés\nVeuillez sélectionner une option :\n\t[1]- Création d\'un ABRE-balisé\n\t[2]- Conversion d'un ABRE vers un ABRE-balisé\n\t[3]- Insertion/Suppression dans un ABRE-balisé\n\t[9]- Quitter\n\n\n");
+		scanf("%hd", &select);
+		
+		switch (select) {
+			case 1:
+				break;
+			default:
+				printf("Option indisponible...");
+				break;
+		}
+	}
+	#endif
 	return EXIT_SUCCESS;
-
-	//test leon
-
 
 }

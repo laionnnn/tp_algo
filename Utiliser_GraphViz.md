@@ -7,11 +7,12 @@
 - On utilise l'utilitaire `dot` avec :
 
   ```bash
-  dot -Tpng <fichier d'entrée>.dot -o <fichier de sortie>.png```
+  dot -Tpng <fichier d'entrée>.dot -o <fichier de sortie>.png
+  ```
 
 Commande de compilation :
 
-    ```gcc -Wall -g -o main main.c && ./main```
+    ```gcc -Wall -DDEBUG -g -o main main.c && ./main```
     (08/05/25: désormais, dot -Tpng test.dot -o outfile.png s'exécute automatiquement dans le programme)
 
 # Recommandations
