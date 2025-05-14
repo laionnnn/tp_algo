@@ -1,8 +1,11 @@
 # Ignore executable
-main
+programme
 
 # Ignore all PNG files
 *.png
 
 # Ignore all DOT files
 *.dot
+
+# Ignore all object files
+*.o
