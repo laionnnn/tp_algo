@@ -62,40 +62,7 @@ int insererNoeud(Noeud* n, Abr* T)
 	return EXIT_SUCCESS;
 }
 
-int insererFeuilleBalise(Noeud* n, Abr* T)
-{
-	int h = 0;
-	Abr* parcours = NULL;
-	if (T == NULL) T = creerAbr(n);
-	else {
-		if (T->g == NULL && T->d == NULL) {
-			Noeud* ancienneCle = T->x;
-			T->x = (n->id <= ancienneCle->id) ? creerNoeud(ancienneCle->id, 0) : creerNoeud(n->id, 0); 
-			// Le pere contient la plus petite des 2 feuilles;
-			// On crée un nouveau noeud SANS DATA : seules les feuilles en contiennent
 
-			// Création des deux feuilles enfants
-			T->g = creerAbr((n->id <= ancienneCle->id) ? n : ancienneCle);
-			T->d = creerAbr((n->id <= ancienneCle->id) ? ancienneCle : n);
-
-			T->g->pere = T;
-			T->d->pere = T;
-
-			// La mise à jour de la hauteur après insertion
-			parcours = T->g;
-			while (parcours->pere) {
-				h++;
-				parcours = parcours->pere;
-				if (parcours->hauteur < h) parcours->hauteur = h;
-			}
-		}
-		else {
-		if (n->id <= T->x->id) insererFeuilleBalise(n, T->g);
-		else insererFeuilleBalise(n, T->d);
-		}
-	}
-	return EXIT_SUCCESS;
-}
 
 // l’affichage du contenu de l’arbre selon les divers parcours abordés en cours
 
