@@ -17,7 +17,6 @@ typedef struct _Abr{
 Noeud* creerNoeud(int id, char data);
 Abr* creerAbr(Noeud* n);
 int insererNoeud(Noeud* n, Abr* T);
-int insererFeuilleBalise(Noeud* n, Abr* T);
 int parcoursInfixe(Abr* T);
 int supprimerAbr(Abr* T);
 int facteurDesequilibre(Abr* T);
