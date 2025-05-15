@@ -8,6 +8,7 @@
 
 void fixerCle(Abr* abr, int a);
 void ajouterFeuillesPartout(Abr* abr);
-void versAbreBalise(Abr* abr, Pile* p);
+void versAbreBalise(Abr* abr);
+void algoVersAbreBalise(Abr* abr, Pile* p);
 
 #endif

@@ -61,19 +61,11 @@ int main()
 	insererNoeud(n9, T);
 	insererNoeud(n1, T);
 	insererNoeud(n5, T);	
-	Pile* p = malloc(sizeof(Pile));
-	if (!p) {
-		fprintf(stderr, "Erreur malloc\n");
-		exit(EXIT_FAILURE);
-	}
-	
-	initPile(p);
-	printf("okkkkkkkk\n");
-	ajouterFeuillesPartout(T);
+
 	
 	
 	
-	versAbreBalise(T,p);
+	versAbreBalise(T);
 	printf("okkkkkkkk2\n");
 	insererFeuilleBalise(n6, T);
 

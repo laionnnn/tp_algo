@@ -37,7 +37,9 @@ void ajouterFeuillesPartout(Abr* abr){
 
 }
 
-void versAbreBalise(Abr* abr, Pile* p){
+
+
+void algoVersAbreBalise(Abr* abr, Pile* p){
 	
 
 	if(abr->x->id == 0){
@@ -48,10 +50,25 @@ void versAbreBalise(Abr* abr, Pile* p){
 	}
 	else{
 		empiler(p, abr->x->id);
-		versAbreBalise(abr->g,p);
-		versAbreBalise(abr->d,p);
+		algoVersAbreBalise(abr->g,p);
+		algoVersAbreBalise(abr->d,p);
 	}
 	
+}
+
+void versAbreBalise(Abr* T){
+
+	Pile* p = malloc(sizeof(Pile));
+	if (!p) {
+		fprintf(stderr, "Erreur malloc\n");
+		exit(EXIT_FAILURE);
+	}
+	
+	initPile(p);
+	printf("okkkkkkkk\n");
+	ajouterFeuillesPartout(T);
+	algoVersAbreBalise(T,p);
+
 }
 
 //FIN PARTIE TP4 LEON
