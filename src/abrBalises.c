@@ -45,7 +45,6 @@ void algoVersAbreBalise(Abr* abr, Pile* p){
 	if(abr->x->id == 0){
 
 		fixerCle(abr, sommet(p));
-		printf("ok\n");
 		depiler(p);
 	}
 	else{

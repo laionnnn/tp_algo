@@ -65,7 +65,6 @@ int main()
 
 	
 	
-	
 	versAbreBalise(T);
 	
 	//insererFeuilleBalise(n6, T);
@@ -73,6 +72,7 @@ int main()
 	int* R;
 	rechercheIntervalle(T,2,6,&R);
 	free(R);
+
 	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));

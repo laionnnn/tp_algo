@@ -54,11 +54,11 @@ int rechercheIntervalle(Abr* T, int a, int b, int **R){
 	}
     
     for(int i = 0; i<(*taillePile);i++){
-        *R[i] = sommet(p);
+        (*R)[i] = sommet(p);
         depiler(p);
 
         #ifdef DEBUG
-        printf("R[%d] : %d\n",i,*R[i]);
+        printf("R[%d] : %d\n",i,(*R)[i]);
         #endif
 
     }

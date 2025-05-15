@@ -32,7 +32,7 @@ void empiler(Pile* p, int val) {
 // Dépile un élément
 int depiler(Pile* p) {
     if (estVide(p)) {
-        fprintf(stderr, "Erreur : pile vide\n");
+        //fprintf(stderr, "Erreur : pile vide\n");
         //exit(EXIT_FAILURE);
 		return 0;
     }
@@ -46,7 +46,7 @@ int depiler(Pile* p) {
 // Regarde le sommet sans dépiler
 int sommet(Pile* p) {
     if (estVide(p)) {
-        fprintf(stderr, "Erreur : pile vide\n");
+        //fprintf(stderr, "Erreur : pile vide\n");
         //exit(EXIT_FAILURE);
 		return 0;
     }
