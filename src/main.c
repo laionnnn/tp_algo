@@ -57,9 +57,6 @@ int main()
 	Abr* T = creerAbr(n7);
 	insererNoeud(n3, T);
 	insererNoeud(n9, T);
-	insererFeuilleBalise(n1, T);
-	insererFeuilleBalise(n5, T);	
-	insererFeuilleBalise(n6, T);	
 	Pile* p = malloc(sizeof(Pile));
 	if (!p) {
 		fprintf(stderr, "Erreur malloc\n");
@@ -75,6 +72,14 @@ int main()
 	versAbreBalise(T,p);
 	printf("okkkkkkkk2\n");
 	
+	insererFeuilleBalise(n1, T);
+	insererFeuilleBalise(n5, T);	
+	insererFeuilleBalise(n6, T);
+
+	supprimerFeuilleBalise(7, T);
+	supprimerFeuilleBalise(5, T);
+	supprimerFeuilleBalise(3, T);
+	supprimerFeuilleBalise(0, T);
 	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
@@ -96,7 +101,7 @@ int main()
 			case 1: //Création d'un ABRE-balisé
 				select = 0; // On déselectionne
 				int noeud;
-				printf("Création/Affichage d'un ABRE-balisé :\nL'arbre créé peut-être visualisé au fur et à mesure en ouvrant le fichier ./Creation/ArbreCree.png qui sera généré\nPour revenir au menu, insérez un noeud -1\n\n");
+				printf("Création/Affichage d'un ABRE-balisé :\nL'arbre créé peut-être visualisé au fur et à mesure en ouvrant le fichier ./Creation/ArbreCree.png qui sera généré\nN'insérez pas de noeuds avec le même nom !\nPour revenir au menu, insérez un noeud -1\n\n");
 				system("mkdir -p ./Creation");
 				printf("Racine à insérer ?\n>>> ");
 				scanf("%d", &noeud);
