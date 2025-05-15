@@ -6,3 +6,6 @@ main
 
 # Ignore all DOT files
 *.dot
+
+# Ignore fichiés compilés
+*.o
