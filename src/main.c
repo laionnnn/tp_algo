@@ -60,15 +60,16 @@ int main()
 	insererNoeud(n3, T);
 	insererNoeud(n9, T);
 	insererNoeud(n1, T);
-	insererNoeud(n5, T);	
+	insererNoeud(n5, T);
+	insererNoeud(n6, T);	
 
 	
 	
 	
 	versAbreBalise(T);
-	printf("okkkkkkkk2\n");
-	insererFeuilleBalise(n6, T);
-
+	
+	//insererFeuilleBalise(n6, T);
+	
 	int* R;
 	rechercheIntervalle(T,2,6,&R);
 	free(R);

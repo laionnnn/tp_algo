@@ -10,5 +10,6 @@ void fixerCle(Abr* abr, int a);
 void ajouterFeuillesPartout(Abr* abr);
 void versAbreBalise(Abr* abr);
 void algoVersAbreBalise(Abr* abr, Pile* p);
+int insererFeuilleBalise(Noeud* n, Abr* T);
 
 #endif

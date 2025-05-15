@@ -45,7 +45,7 @@ void algoVersAbreBalise(Abr* abr, Pile* p){
 	if(abr->x->id == 0){
 
 		fixerCle(abr, sommet(p));
-		printf("vleur : %d\n", sommet(p));
+		printf("ok\n");
 		depiler(p);
 	}
 	else{
@@ -65,7 +65,6 @@ void versAbreBalise(Abr* T){
 	}
 	
 	initPile(p);
-	printf("okkkkkkkk\n");
 	ajouterFeuillesPartout(T);
 	algoVersAbreBalise(T,p);
 
