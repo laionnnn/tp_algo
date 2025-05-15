@@ -1,6 +1,0 @@
-#ifndef ALGOCOMPLEXITE_H
-#define ALGOCOMPLEXITE_H
-
-
-
-#endif

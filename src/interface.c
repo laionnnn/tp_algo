@@ -16,7 +16,8 @@ int ecritureRec(Abr* T, FILE* pF)
 		- i<pere>	: noeud invisible permettant de distinguer fils gauche et droit (i.e. feuille externe)
 	*/
 	
-	if ((T->g == NULL && T->d == NULL)) {	
+	if ((T->g == NULL && T->d == NULL)) {
+
 		fprintf(pF, "\tf%d [label = %d, style=filled, fillcolor=lightblue];\n\n", T->x->id, T->x->id);
 		return EXIT_SUCCESS;
 	}

@@ -2,10 +2,12 @@
 #include "../include/abrBinaire.h"
 #include "../include/pile.h"
 #include "../include/interface.h"
+#include "../include/rechercheElementInter.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include <stdio.h>
 #include <stdbool.h>
+
 
 
 
@@ -57,9 +59,8 @@ int main()
 	Abr* T = creerAbr(n7);
 	insererNoeud(n3, T);
 	insererNoeud(n9, T);
-	insererFeuilleBalise(n1, T);
-	insererFeuilleBalise(n5, T);	
-	insererFeuilleBalise(n6, T);	
+	insererNoeud(n1, T);
+	insererNoeud(n5, T);	
 	Pile* p = malloc(sizeof(Pile));
 	if (!p) {
 		fprintf(stderr, "Erreur malloc\n");
@@ -74,7 +75,11 @@ int main()
 	
 	versAbreBalise(T,p);
 	printf("okkkkkkkk2\n");
-	
+	insererFeuilleBalise(n6, T);
+
+	int* R;
+	rechercheIntervalle(T,2,6,&R);
+	free(R);
 	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
