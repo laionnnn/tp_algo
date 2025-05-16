@@ -102,8 +102,7 @@ int supprimerFeuilleBalise(int id, Abr* T)
 		if (T->g == NULL && T->d == NULL) {
 			if (T->x->id == id) {
 			// Si on a atteint la feuille AVEC LE BON ID :
-				// On stocke son père
-				Abr* pere = T->pere;
+
 
 				// Son père devient l'autre feuille
 				free(T->pere->x);

@@ -53,11 +53,10 @@ int main()
 	Noeud* n1 = creerNoeud(1, 0);
 	Noeud* n5 = creerNoeud(5, 0);
 	Noeud* n6 = creerNoeud(6, 0);
+	Noeud* n4 = creerNoeud(4, 0);
 	
 	Abr* T = creerAbr(n7);
-	insererNoeud(n3, T);
-	insererNoeud(n9, T);
-	Pile* p = malloc(sizeof(Pile));
+	/*Pile* p = malloc(sizeof(Pile));
 	if (!p) {
 		fprintf(stderr, "Erreur malloc\n");
 		exit(EXIT_FAILURE);
@@ -68,18 +67,16 @@ int main()
 	ajouterFeuillesPartout(T);
 	
 	
-	
 	versAbreBalise(T,p);
-	printf("okkkkkkkk2\n");
+	printf("okkkkkkkk2\n");*/
 	
-	insererFeuilleBalise(n1, T);
-	insererFeuilleBalise(n5, T);	
+	insererFeuilleBalise(n3, T);
+	insererFeuilleBalise(n4, T);	
 	insererFeuilleBalise(n6, T);
 
-	supprimerFeuilleBalise(7, T);
 	supprimerFeuilleBalise(5, T);
-	supprimerFeuilleBalise(3, T);
-	supprimerFeuilleBalise(0, T);
+	supprimerFeuilleBalise(7, T);
+	supprimerFeuilleBalise(4, T);
 	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
@@ -89,11 +86,11 @@ int main()
 	#else
 	short select;
 	while (1) { // Boucle principale
-		printf("\n\n █████  ██████  ██████  ███████       ██████   █████  ██      ██ ███████ ███████ \n██   ██ ██   ██ ██   ██ ██            ██   ██ ██   ██ ██      ██ ██      ██      \n███████ ██████  ██████  █████   █████ ██████  ███████ ██      ██ ███████ █████   \n██   ██ ██   ██ ██   ██ ██            ██   ██ ██   ██ ██      ██      ██ ██      \n██   ██ ██████  ██   ██ ███████       ██████  ██   ██ ███████ ██ ███████ ███████ \n\nAuthors: T. Ouerfili, L. Frénéa\nCopyright 2025 T. Ouerfili, L. Frénéa\n\n");
+		printf("\n\n █████  ██████  ██████  ███████       ██████   █████  ██      ██ ███████ ███████ \n██   ██ ██   ██ ██   ██ ██            ██   ██ ██   ██ ██      ██ ██      ██      \n███████ ██████  ██████  █████   █████ ██████  ███████ ██      ██ ███████ █████   \n██   ██ ██   ██ ██   ██ ██            ██   ██ ██   ██ ██      ██      ██ ██      \n██   ██ ██████  ██   ██ ███████       ██████  ██   ██ ███████ ██ ███████ ███████ \nAuthors: T. Ouerfili, L. Frénéa\nCopyright 2025 T. Ouerfili, L. Frénéa\n\n");
 		printf("Bienvenue dans le programme du TP4 - Arbres binaires de recherche équilibrés et balisés\n");
 		
 		while (select < 1 || select > 9) { // Entrée d'un l'input valide
-			printf("Veuillez sélectionner une option :\n\t[1]- Création d\'un ABRE-balisé\n\t[2]- Conversion d'un ABRE vers un ABRE-balisé\n\t[3]- Insertion/Suppression dans un ABRE-balisé\n\t[9]- Quitter\n\n\n");
+			printf("Veuillez sélectionner une option :\n\t[1]- Création d\'un ABRE-balisé\n\t[2]- Conversion d'un ABRE vers un ABRE-balisé\n\t[3]- Recherche d'éléments d'intervalle\n\t[9]- Quitter\n\n\n");
 			scanf("%hd", &select);
 		}
 		
@@ -101,16 +98,20 @@ int main()
 			case 1: //Création d'un ABRE-balisé
 				select = 0; // On déselectionne
 				int noeud;
+				int insSup;
 				printf("Création/Affichage d'un ABRE-balisé :\nL'arbre créé peut-être visualisé au fur et à mesure en ouvrant le fichier ./Creation/ArbreCree.png qui sera généré\nN'insérez pas de noeuds avec le même nom !\nPour revenir au menu, insérez un noeud -1\n\n");
 				system("mkdir -p ./Creation");
 				printf("Racine à insérer ?\n>>> ");
 				scanf("%d", &noeud);
 				Abr* T = creerAbr(creerNoeud(noeud, 0));
 				while(1) {
-					printf("Noeud à insérer ?\n>>> ");
+					printf("Noeud ?\n>>> ");
 					scanf("%d", &noeud);
 					if (noeud == -1) break;
-					insererFeuilleBalise(creerNoeud(noeud, 0), T);
+					printf("Insertion [1] ou Suppression [0]\n>>> ");
+					scanf("%d", &insSup);
+					if (insSup) insererFeuilleBalise(creerNoeud(noeud, 0), T);
+					else supprimerFeuilleBalise(noeud, T);
 					exportDotGraph(T, "./Creation/ArbreCree.dot");
 					system( "dot -Tpng ./Creation/ArbreCree.dot -o ./Creation/ArbreCree.png" );
 				}
