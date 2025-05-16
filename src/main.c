@@ -67,18 +67,22 @@ int main()
 	
 	versAbreBalise(T);
 	
-	//insererFeuilleBalise(n6, T);
-	
-	int* R;
-	rechercheIntervalle(T,2,6,&R);
-	free(R);
+
 
 	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
 	exportDotGraph(T, "test.dot");
-	system( "dot -Tpng test.dot -o outfile.png" );
+	//system( "dot -Tpng test.dot -o outfile.png" );
 	//supprimerAbr(T);
+
+	//insererFeuilleBalise(n6, T);
+	
+	int* R;
+	rechercheIntervalle(T,2,7,&R);
+	free(R);
+	system( "dot -Tpng test.dot -o outfile.png" );
+
 	#else
 	short select;
 	while (select < 1 || select > 9) {

@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+
 int rechercheIntervallePile(Abr* T, int a, int b, Pile* p, int* taillePile){
 
     if(T == NULL){
@@ -52,16 +53,35 @@ int rechercheIntervalle(Abr* T, int a, int b, int **R){
 		fprintf(stderr, "Erreur malloc\n");
 		exit(EXIT_FAILURE);
 	}
-    
+
+
+    FILE* doc;
+    doc = fopen("test.dot", "rb+");
+    fseek(doc, 0, SEEK_END);
+    long tailleDoc = ftell(doc);
+    ftruncate(fileno(doc), tailleDoc - 1);
+    fseek(doc, -1, SEEK_CUR);
+
+
     for(int i = 0; i<(*taillePile);i++){
         (*R)[i] = sommet(p);
         depiler(p);
+
+        //on change les couleurs dans l'affichage
+
+        fprintf(doc, "\tf%d [label = %d, style=filled, fillcolor=green];\n\n", (*R)[i], (*R)[i]);
+        fprintf(doc, "\t%d [label = %d, style=filled, fillcolor=green];\n\n", (*R)[i], (*R)[i]);
+
 
         #ifdef DEBUG
         printf("R[%d] : %d\n",i,(*R)[i]);
         #endif
 
+        
     }
+
+    fprintf(doc, "\n}\n");
+    fclose(doc);
 
     libererPile(p);
     free(taillePile);
