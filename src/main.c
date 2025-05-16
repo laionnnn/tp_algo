@@ -63,8 +63,8 @@ int main()
 				select = 0; // On déselectionne
 				int noeud;
 				int insSup;
-				printf("Création/Affichage d'un ABRE-balisé :\nL'arbre créé peut-être visualisé au fur et à mesure en ouvrant le fichier ./Creation/ArbreCree.png qui sera généré\nN'insérez pas de noeuds avec le même nom !\nPour revenir au menu, insérez un noeud -1\n\n");
-				system("mkdir -p ./Creation");
+				printf("Création/Affichage d'un ABRE-balisé :\nL'arbre créé peut-être visualisé au fur et à mesure en ouvrant le fichier ./dot/Creation/ArbreCree.png qui sera généré\nN'insérez pas de noeuds avec le même nom !\nPour revenir au menu, insérez un noeud -1\n\n");
+				system("mkdir -p ./dot/Creation");
 				printf("Racine à insérer ?\n>>> ");
 				scanf("%d", &noeud);
 				Abr* T = creerAbr(creerNoeud(noeud, 0));
@@ -76,15 +76,15 @@ int main()
 					scanf("%d", &insSup);
 					if (insSup) insererFeuilleBalise(creerNoeud(noeud, 0), T);
 					else supprimerFeuilleBalise(noeud, T);
-					exportDotGraph(T, "./Creation/ArbreCree.dot");
-					system( "dot -Tpng ./Creation/ArbreCree.dot -o ./Creation/ArbreCree.png" );
+					exportDotGraph(T, "./dot/Creation/ArbreCree.dot");
+					system( "dot -Tpng ./dot/Creation/ArbreCree.dot -o ./dot/Creation/ArbreCree.png" );
 				}
 				supprimerAbr(T);
 				break;
 			case 2: //Conversion d'un ABRE vers un ABRE-balisé
 				select = 0; // On déselectionne
-				printf("Conversion d'un ABRE vers un ABRE-balisé :\nUn ABRE et un ABRE-Balisé ont été générés dans ./Conversion.\nL'ABRE-Balisé a été construit par conversion de ABRE.\n\n");
-				system("mkdir -p ./Conversion");
+				printf("Conversion d'un ABRE vers un ABRE-balisé :\nUn ABRE et un ABRE-Balisé ont été générés dans ./dot/Conversion.\nL'ABRE-Balisé a été construit par conversion de ABRE.\n\n");
+				system("mkdir -p ./dot/Conversion");
 
 				/*ABRE*/
 				Abr* T1 = creerAbr(creerNoeud(47, 0));
@@ -104,13 +104,13 @@ int main()
 				insererNoeud(creerNoeud(70, 0),T1);
 				insererNoeud(creerNoeud(97, 0),T1);
 				
-				exportDotGraph(T1, "./Conversion/ABRE.dot");
-				system( "dot -Tpng ./Conversion/ABRE.dot -o ./Conversion/ABRE.png" );
+				exportDotGraph(T1, "./dot/Conversion/ABRE.dot");
+				system( "dot -Tpng ./dot/Conversion/ABRE.dot -o ./dot/Conversion/ABRE.png" );
 				
 				/*ABRE-Balisé*/
 				versAbreBalise(T1);
-				exportDotGraph(T1, "./Conversion/ABREBalise.dot");
-				system( "dot -Tpng ./Conversion/ABREBalise.dot -o ./Conversion/ABREBalise.png" );
+				exportDotGraph(T1, "./dot/Conversion/ABREBalise.dot");
+				system( "dot -Tpng ./dot/Conversion/ABREBalise.dot -o ./dot/Conversion/ABREBalise.png" );
 
 				supprimerAbr(T1);
 				break;
@@ -118,8 +118,8 @@ int main()
 				select = 0; // On déselectionne
 				int a;
 				int b;
-				printf("Recherche d'éléments d'intervalle :\nEn accord avec l'énoncé de la partie B, un arbre avec les éléments de l'intervalle R surlignés va être généré dans ./Intervalle.\nVeuillez spécifier l'intervalle :\n\n");
-				system("mkdir -p ./Intervalle");
+				printf("Recherche d'éléments d'intervalle :\nEn accord avec l'énoncé de la partie B, un arbre avec les éléments de l'intervalle R surlignés va être généré dans ./dot/Intervalle.\nVeuillez spécifier l'intervalle :\n\n");
+				system("mkdir -p ./dot/Intervalle");
 				do {
 					printf("[a ?\n");
 					scanf("%d", &a);
@@ -147,11 +147,11 @@ int main()
 				insererNoeud(creerNoeud(70, 0),TR);
 				insererNoeud(creerNoeud(97, 0),TR);
 				versAbreBalise(TR);
-				exportDotGraph(TR, "./Intervalle/ABREBIntervalle.dot");
+				exportDotGraph(TR, "./dot/Intervalle/ABREBIntervalle.dot");
 				int* R;
-				rechercheIntervalle(TR, a, b, &R, "./Intervalle/ABREBIntervalle.dot");
+				rechercheIntervalle(TR, a, b, &R, "./dot/Intervalle/ABREBIntervalle.dot");
 				free(R);
-				system( "dot -Tpng ./Intervalle/ABREBIntervalle.dot -o ./Intervalle/ABREBIntervalle.png" );
+				system( "dot -Tpng ./dot/Intervalle/ABREBIntervalle.dot -o ./dot/Intervalle/ABREBIntervalle.png" );
 				supprimerAbr(TR);
 				break;
 			case 9: // Quitter
