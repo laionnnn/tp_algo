@@ -16,39 +16,7 @@
 int main()
 {
 	#ifdef DEBUG
-	/*
-	Arbre du sujet du TP, ne fonctionne pas bien
-	Noeud* n7 = creerNoeud(7, 0);
-	Noeud* n10 = creerNoeud(10, 0);
-	Noeud* n19 = creerNoeud(19, 0);
-	Noeud* n25 = creerNoeud(25, 0);
-	Noeud* n30 = creerNoeud(30, 0);
-	Noeud* n37 = creerNoeud(37, 0);
-	Noeud* n47 = creerNoeud(47, 0);
-	Noeud* n59 = creerNoeud(59, 0);
-	Noeud* n62 = creerNoeud(62, 0);
-	Noeud* n70 = creerNoeud(70, 0);
-	Noeud* n80 = creerNoeud(80, 0);
-	Noeud* n89 = creerNoeud(89, 0);
-	Noeud* n97 = creerNoeud(97, 0);	
 	
-	Abr* T = creerAbr(n47);
-	
-	insererNoeud(n25, T);
-	insererNoeud(n80, T);
-	
-	insererNoeud(n10, T);
-	insererNoeud(n37, T);
-	insererNoeud(n62, T);
-	insererNoeud(n89, T);
-	
-	insererFeuilleBalise(n7, T);
-	insererFeuilleBalise(n19, T);
-	insererFeuilleBalise(n30, T);
-	insererFeuilleBalise(n59, T);
-	insererFeuilleBalise(n70, T);
-	insererFeuilleBalise(n97, T);
-	*/
 	Noeud* n7 = creerNoeud(7, 0);
 	Noeud* n3 = creerNoeud(3, 0);
 	Noeud* n9 = creerNoeud(9, 0);
@@ -64,12 +32,7 @@ int main()
 	insererNoeud(n5, T);
 	insererNoeud(n6, T);	
 
-	
-	
 	versAbreBalise(T);
-	
-
-
 	
 	//parcoursInfixe(T);
 	//printf("\nFacteur = %d\n",facteurDesequilibre(T));
@@ -80,7 +43,7 @@ int main()
 	//insererFeuilleBalise(n6, T);
 	
 	int* R;
-	rechercheIntervalle(T,2,7,&R);
+	rechercheIntervalle(T,2,7,&R, "test.dot");
 	free(R);
 	system( "dot -Tpng test.dot -o outfile.png" );
 
@@ -120,7 +83,7 @@ int main()
 				break;
 			case 2: //Conversion d'un ABRE vers un ABRE-balisé
 				select = 0; // On déselectionne
-				printf("Conversion d'un ABRE vers un ABRE-balisé :\nUn ABRE et un ABRE-Balisé ont été générés dans ./Conversion.\n L'ABRE-Balisé a été construit par conversion de ABRE.\n\n");
+				printf("Conversion d'un ABRE vers un ABRE-balisé :\nUn ABRE et un ABRE-Balisé ont été générés dans ./Conversion.\nL'ABRE-Balisé a été construit par conversion de ABRE.\n\n");
 				system("mkdir -p ./Conversion");
 
 				/*ABRE*/
@@ -145,19 +108,51 @@ int main()
 				system( "dot -Tpng ./Conversion/ABRE.dot -o ./Conversion/ABRE.png" );
 				
 				/*ABRE-Balisé*/
-				Pile* p = malloc(sizeof(Pile));
-				if (!p) {
-					fprintf(stderr, "Erreur malloc\n");
-					exit(EXIT_FAILURE);
-				}
-				initPile(p);
-				ajouterFeuillesPartout(T1);
-				versAbreBalise(T1, p);
+				versAbreBalise(T1);
 				exportDotGraph(T1, "./Conversion/ABREBalise.dot");
 				system( "dot -Tpng ./Conversion/ABREBalise.dot -o ./Conversion/ABREBalise.png" );
 
-				libererPile(p);
 				supprimerAbr(T1);
+				break;
+			case 3: //Recherche d'éléments d'intervalle
+				select = 0; // On déselectionne
+				int a;
+				int b;
+				printf("Recherche d'éléments d'intervalle :\nEn accord avec l'énoncé de la partie B, un arbre avec les éléments de l'intervalle R surlignés va être généré dans ./Intervalle.\nVeuillez spécifier l'intervalle :\n\n");
+				system("mkdir -p ./Intervalle");
+				do {
+					printf("[a ?\n");
+					scanf("%d", &a);
+					printf("%d\n", a);
+					printf("b] ?\n");
+					scanf("%d", &b);
+					printf("%d\n", b);
+				} while ((a < 7 || a > 97) || (b < 7 || b > 97) || (a > b));
+
+				printf("Bien reçu !\n");
+				Abr* TR = creerAbr(creerNoeud(47, 0));
+				
+				insererNoeud(creerNoeud(25, 0),TR);
+				insererNoeud(creerNoeud(80, 0),TR);
+				
+				insererNoeud(creerNoeud(10, 0),TR);
+				insererNoeud(creerNoeud(37, 0),TR);
+				insererNoeud(creerNoeud(62, 0),TR);
+				insererNoeud(creerNoeud(89, 0),TR);
+				
+				insererNoeud(creerNoeud(7, 0),TR);
+				insererNoeud(creerNoeud(19, 0),TR);
+				insererNoeud(creerNoeud(30, 0),TR);
+				insererNoeud(creerNoeud(59, 0),TR);
+				insererNoeud(creerNoeud(70, 0),TR);
+				insererNoeud(creerNoeud(97, 0),TR);
+				versAbreBalise(TR);
+				exportDotGraph(TR, "./Intervalle/ABREBIntervalle.dot");
+				int* R;
+				rechercheIntervalle(TR, a, b, &R, "./Intervalle/ABREBIntervalle.dot");
+				free(R);
+				system( "dot -Tpng ./Intervalle/ABREBIntervalle.dot -o ./Intervalle/ABREBIntervalle.png" );
+				supprimerAbr(TR);
 				break;
 			case 9: // Quitter
 				exit(EXIT_SUCCESS);

@@ -29,7 +29,7 @@ int rechercheIntervallePile(Abr* T, int a, int b, Pile* p, int* taillePile){
 
 }
 
-int rechercheIntervalle(Abr* T, int a, int b, int **R){
+int rechercheIntervalle(Abr* T, int a, int b, int **R, char* filename){
 
     Pile* p = malloc(sizeof(Pile));
 	if (!p) {
@@ -56,7 +56,7 @@ int rechercheIntervalle(Abr* T, int a, int b, int **R){
 
 
     FILE* doc;
-    doc = fopen("test.dot", "rb+");
+    doc = fopen(filename, "rb+");
     fseek(doc, 0, SEEK_END);
     long tailleDoc = ftell(doc);
     ftruncate(fileno(doc), tailleDoc - 1);
